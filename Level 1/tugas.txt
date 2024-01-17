@@ -1,0 +1,50 @@
+Tugas Level 1
+1.  Bagaimanakah dependency management dalam golang?
+    dengan cara
+    perintah: go mod init command
+    command = merupakan pemberian nama modul dari code dan sebagai juga path dari module code yang dibuat
+    perintah ini untuk membuat pengelolaan dependensi dan pelacakan
+
+    perintah: go mod tidy
+    perintah ini untuk melakukan sync terkait paket yang digunakan dan menghapus paket yang tidak digunakan
+
+    perintah: go get path_module
+    path_module = nama dependensi atau nama modul
+    perintah ini digunakan untuk menambahkan sebuah dependensi kedalam modul code
+
+2.  Jelaskan kegunaan function fmt.Sprintln apa bedanya dengan fmt.Println, beri contoh code, copas output nya
+    
+    fmt.Println 
+    perintah untuk mengeluarkan hasil dalam baris yang baru tanpa format hasil textnya.
+    
+    code: fmt.Println("Hello, World!")
+    output: 
+    Hello, World!
+
+    fmt.Sprintln
+    perintah melakukan format text dalam baris yang baru dengan format text umum tertentu serta membutuhkan perintah untuk mengeluarkan hasilnya
+    
+    code:
+    const name, age = "Hanif", 30
+	s := fmt.Sprintln(name, "is", age, "years old.")
+	fmt.Print(s)
+    output: 
+    Hanif is 30 years old.
+
+3.  Jelaskan kegunaan function fmt.Errorf apa bedanya dengan errors.New, beri contoh code, copas outputnya
+    fmt.Errorf
+    merupakan sebuah fungsi untuk melakukan format text dengan format text umumnya yang dikhususkan untuk pesan kesalahan 
+    dan memiliki return interface error yang bertipe string.
+    
+    code:
+    e := fmt.Errorf("%s", "data not found")
+	fmt.Print(e.Error())
+    output: data not found
+
+    errors.New
+    merupakan sebuah fungsi untuk menampilkan hasil dengan memberikan text bertipe string tanpa format text
+    
+    code:
+    err := errors.New("failed get data")
+	fmt.Print(err)
+    output: failed get data
