@@ -1,7 +1,8 @@
 package generate
+
 import (
-	"strconv"
 	"errors"
+	"strconv"
 	"strings"
 )
 
@@ -10,13 +11,13 @@ type BuildNIP interface {
 }
 
 type FirstAttr struct {
-    gender string
+	gender      string
 	year, month int
 }
 
 type SecondAttr struct {
-    firstStr string
-	seq int
+	firstStr string
+	seq      int
 }
 
 const (
@@ -35,7 +36,7 @@ func (attr FirstAttr) textNIP() string {
 	if attr.month > 6 && attr.month <= 12 {
 		semesterNIP = "2"
 	}
-    return awalNIP + genderNIP + yearNIP + semesterNIP
+	return awalNIP + genderNIP + yearNIP + semesterNIP
 }
 
 func (attr SecondAttr) textNIP() string {
@@ -56,12 +57,12 @@ func (attr SecondAttr) textNIP() string {
 
 func GenerateNIP(gender string, year, month, loop int) ([]string, error) {
 	if gender == "" {
-        return []string{}, errors.New("empty gender")
-    }
+		return []string{}, errors.New("empty gender")
+	}
 
 	if loop == 0 {
-        return []string{}, errors.New("empty loop")
-    }
+		return []string{}, errors.New("empty loop")
+	}
 
 	var b BuildNIP
 	b = FirstAttr{gender, year, month}
@@ -74,21 +75,21 @@ func GenerateNIP(gender string, year, month, loop int) ([]string, error) {
 		generateArr = append(generateArr, f+"-"+s)
 		j++
 	}
-    return generateArr, nil
+	return generateArr, nil
 }
 
 func GenerateNextNIP(nip string, loop int) ([]string, error) {
 	if nip == "" {
-        return []string{}, errors.New("empty NIP")
-    }
+		return []string{}, errors.New("empty NIP")
+	}
 
 	if loop == 0 {
-        return []string{}, errors.New("empty loop")
-    }
+		return []string{}, errors.New("empty loop")
+	}
 
 	var b BuildNIP
 	rangeNIP := nip[0:6]
-	rangeSeq,_ := strconv.Atoi(nip[8:12])
+	rangeSeq, _ := strconv.Atoi(nip[8:12])
 	generateArr := []string{}
 	j := rangeSeq
 	for i := 0; i < loop; i++ {
@@ -97,5 +98,5 @@ func GenerateNextNIP(nip string, loop int) ([]string, error) {
 		generateArr = append(generateArr, rangeNIP+"-"+s)
 		j++
 	}
-    return generateArr, nil
+	return generateArr, nil
 }
